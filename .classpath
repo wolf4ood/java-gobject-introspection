@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="stub-examples"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/usr/share/java/jna.jar" sourcepath="/src/fedora/jna/devel/jna-3.0.2/src"/>
+	<classpathentry kind="lib" path="/usr/share/java/gnu-getopt.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/stringtemplate.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/antlr.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/commons-io.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

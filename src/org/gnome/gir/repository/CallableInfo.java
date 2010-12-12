@@ -23,12 +23,28 @@
 
 package org.gnome.gir.repository;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.sun.jna.ptr.PointerByReference;
+
 public class CallableInfo extends BaseInfo {
 	protected CallableInfo(Initializer init) {
 		super(init);
 	}	
 	public TypeInfo getReturnType() {
 		return Repository.getNativeLibrary().g_callable_info_get_return_type(this);
+	}
+	public Map<String,String> getReturnAttributes(){
+		PointerByReference name = new PointerByReference();
+		PointerByReference value = new PointerByReference();
+		AttributeIter iter = new AttributeIter();
+		iter.data = null;
+		Map<String , String> ret = new HashMap<String, String>();
+		//boolean b = true;
+		String ciccio = Repository.getNativeLibrary().g_callable_info_get_return_attribute(this, "return");
+		//b = Repository.getNativeLibrary().g_callable_info_iterate_return_attributes(this, iter, name, value);
+		return ret;
 	}
 	public Transfer getCallerOwns() {
 		return Repository.getNativeLibrary().g_callable_info_get_caller_owns(this);
@@ -57,6 +73,7 @@ public class CallableInfo extends BaseInfo {
 	@Override
 	public String getNativeToString() {
 		String signature = new String() ;
+		getReturnAttributes();
 		signature += getReturnType().getTag() + " " + getIdentifier() + "(";
 		String args = new String();
 		for(ArgInfo a : getArgs()){

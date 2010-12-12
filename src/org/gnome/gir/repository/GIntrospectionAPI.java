@@ -83,7 +83,8 @@ interface GIntrospectionAPI extends Library {
 	boolean g_callable_info_get_may_return_null(CallableInfo info);
 	int g_callable_info_get_n_args(CallableInfo info);
 	ArgInfo g_callable_info_get_arg(CallableInfo info, int n);
-	
+	String g_callable_info_get_return_attribute(CallableInfo info,String name);
+	boolean g_callable_info_iterate_return_attributes(CallableInfo info,AttributeIter iter,PointerByReference name,PointerByReference value);
 	Direction           g_arg_info_get_direction          (ArgInfo info);
 	boolean              g_arg_info_is_dipper              (ArgInfo info);
 	boolean              g_arg_info_is_return_value        (ArgInfo info);

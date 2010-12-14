@@ -15,7 +15,6 @@ public class Repository extends GObject {
 	static {
 		GlibRuntime.init();		
 	}
-	
 	public Repository(Initializer init) {
 		super(init);
 	}

@@ -55,6 +55,12 @@ public class TypeInfo extends PointerType {
 	}
 	
 	public String toString() {
-		return String.format("<TypeInfo tag=%s pointer=%s>", getTag(), isPointer());
+		TypeTag t = getTag();
+		if(t.equals(TypeTag.INTERFACE)){
+			return getInterface().getName();
+		}else {
+			return getTag().toString();
+		}
 	}
+	
 }

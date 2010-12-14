@@ -1,4 +1,3 @@
-
 /* 
  * Copyright (c) 2008 Colin Walters <walters@verbum.org>
  * 
@@ -26,34 +25,18 @@
 package org.gnome.gir.repository;
 
 public enum TypeTag {
-	VOID, 
-	BOOLEAN, 
-	INT8, 
-	UINT8, 
-	INT16, 
-	UINT16, 
-	INT32, 
-	UINT32, 
-	INT64, 
-	UINT64, 
-	SHORT,
-	USHORT,
-	INT, 
-	UINT, 
-	LONG, 
-	ULONG, 
-	SSIZE, 
-	SIZE, 
-	FLOAT, 
-	DOUBLE,
-	TIMET,
-	GTYPE,	
-	UTF8, 
-	FILENAME, 
-	ARRAY, 
-	INTERFACE, 
-	GLIST, 
-	GSLIST, 
-	GHASH, 
-	ERROR,
+
+	VOID("void"), BOOLEAN("Boolean"), INT8("Byte"), UINT8("Character"), INT16("Short"), UINT16(
+			"Short"), INT32("Integer"), UINT32("Integer"), INT64("Integer"), UINT64("Integer"), SHORT("Short"), USHORT("Short"), INT("Integer"), UINT("Long"), LONG("Long"), ULONG(
+			"Long"), SSIZE(""), SIZE(""), FLOAT("Float"), DOUBLE("Double"), TIMET(
+			""), GTYPE("GType"), UTF8("String"), FILENAME("String"), ARRAY(""), INTERFACE(
+			"Iface"), GLIST(""), GSLIST(""), GHASH(""), ERROR("GErrorStruct");
+	private String name;
+	TypeTag(String name) {
+		this.name = name;
+	}
+	@Override
+	public String toString() {
+		return name;
+	}
 }

@@ -1,5 +1,9 @@
 package org.gnome.gir.repository;
 
+import org.gnome.gir.compiler.helper.Resolver;
+
+
+
 
 public class ArgInfo extends BaseInfo {
 	protected ArgInfo(Initializer init) {
@@ -34,6 +38,6 @@ public class ArgInfo extends BaseInfo {
 	}
 	@Override
 	public String getNativeToString() {
-		return getType().toString() + " " + getName();
+		return	Resolver.resolveToNative(getType()) + " " + getName() ;
 	}
 }

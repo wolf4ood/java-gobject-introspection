@@ -26,6 +26,8 @@ package org.gnome.gir.repository;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.gnome.gir.compiler.helper.Resolver;
+
 import com.sun.jna.ptr.PointerByReference;
 
 public class CallableInfo extends BaseInfo {
@@ -41,9 +43,10 @@ public class CallableInfo extends BaseInfo {
 		AttributeIter iter = new AttributeIter();
 		iter.data = null;
 		Map<String , String> ret = new HashMap<String, String>();
-		//boolean b = true;
-		String ciccio = Repository.getNativeLibrary().g_callable_info_get_return_attribute(this, "return");
+		boolean b = true;
+		//String ciccio = Repository.getNativeLibrary().g_callable_info_get_return_attribute(this, "return");
 		//b = Repository.getNativeLibrary().g_callable_info_iterate_return_attributes(this, iter, name, value);
+		//System.out.println(name.getValue().getString(0));
 		return ret;
 	}
 	public Transfer getCallerOwns() {
@@ -74,13 +77,14 @@ public class CallableInfo extends BaseInfo {
 	public String getNativeToString() {
 		String signature = new String() ;
 		getReturnAttributes();
-		signature += getReturnType().getTag() + " " + getIdentifier() + "(";
+		signature +=  Resolver.resolveToNative(getReturnType()) + " " + getIdentifier() + "(";
 		String args = new String();
+		int i=1;
 		for(ArgInfo a : getArgs()){
-			args += a.getNativeToString() + ",";
+			String sep = getArgs().length != i ? "," : "";
+			args += a.getNativeToString() + sep;
+			i++;
 		}
-		//args = args.trim();
-		//args = args.replace(" ", ",");
 		signature += args + ");";
 		return signature;
 	}

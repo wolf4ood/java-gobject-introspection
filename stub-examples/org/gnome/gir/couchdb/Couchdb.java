@@ -3,7 +3,6 @@ package org.gnome.gir.couchdb;
 import gobject.internals.GTypeMapper;
 
 import java.util.HashMap;
-
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
@@ -23,10 +22,5 @@ public interface Couchdb extends Library {
 	Pointer couchdb_session_new(String uri);
 	Boolean couchdb_session_create_database(Pointer p,String name,PointerByReference error);
 	Boolean couchdb_session_delete_database(Pointer p,String name,PointerByReference error);
-	
-	/*public static  void init() {
-		Function f = library.getFunction("g_type_init");		
-		library.getFunction("g_thread_init");
-		f.invoke(new Object[0]);
-	}*/
+
 }

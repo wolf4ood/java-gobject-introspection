@@ -23,7 +23,7 @@
 
 package org.gnome.gir.repository;
 
-public class FunctionInfo extends CallableInfo {
+public class FunctionInfo extends CallableInfo implements FunctionInfoFlags{
 	protected FunctionInfo(Initializer init) {
 		super(init);
 	}
@@ -39,5 +39,9 @@ public class FunctionInfo extends CallableInfo {
 	@Override
 	public String getIdentifier() {
 		return getSymbol();
-	}	
+	}
+	
+	public boolean isThrowError(){
+		return (THROWS | IS_METHOD) ==getFlags();
+	}
 }

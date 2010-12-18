@@ -115,9 +115,9 @@ public class CodeGeneratorMain {
 		String path = repo.getTypelibPath(namespace);
 		if (path == null)
 			return null;
-		File typelibPath = new File(path);
+		File typelibPath = new File("./lib");
 		String version = repo.getNamespaceVersion(namespace);
-		return new File(typelibPath.getParent(), String.format("%s-%s.jar", namespace, version));
+		return new File(typelibPath, String.format("%s-%s.jar", namespace, version));
 	}
 	public static final class NsVer {
 		public String namespace;

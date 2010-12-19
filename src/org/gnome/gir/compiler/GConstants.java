@@ -6,10 +6,9 @@ public class GConstants {
 	public static final String GENERATION = "generated";
 	public static final String SLASH = "/";
 	public static final String LIBRARY_LOAD = ""
-			+ "public static final @NAMESPACE db = (@NAMESPACE) Native.loadLibrary(\"@LIBRARY\", @NAMESPACE.class, new HashMap<String, Object>() {\n "
+			+ "public static final @NAMESPACE lb = (@NAMESPACE) Native.loadLibrary(\"@LIBRARY\", @NAMESPACE.class, new HashMap<String, Object>() {\n "
 			+ "\tprivate static final long serialVersionUID = 1L;" + "\n{"
-			+ "\tput(Library.OPTION_TYPE_MAPPER, @MAPPER);" + "}\n"
-			+ "});\n";
+			+ "\tput(Library.OPTION_TYPE_MAPPER, @MAPPER);" + "}\n" + "});\n";
 	public static final String TAG_NAMESPACE = "@NAMESPACE";
 	public static final String TAG_LIBRARY = "@LIBRARY";
 	public static final String TAG_MAPPER = "@MAPPER";
@@ -22,7 +21,7 @@ public class GConstants {
 	public static final String BRACE_CLOSED = "}";
 	public static final String NEWLINE = "\n";
 	public static final String TAB = "\t";
-	public static final String RETURN  = "return";
+	public static final String RETURN = "return";
 	public static final String SPACE = " ";
 	public static final String DOT = ".";
 	public static final String COMMA = ",";
@@ -32,6 +31,7 @@ public class GConstants {
 	public static final String INTERFACE = "interface";
 	public static final String ABSTRACT = "abstract";
 	public static final String POINTER = "Pointer";
+	public static final String POINTERBR = "PointerByReference";
 	public static final String ERROR = "error";
 	public static final String GERROR = "GerrorStruct";
 	public static final String EQUALS = "=";
@@ -41,7 +41,6 @@ public class GConstants {
 	public static final String PACKAGE = "package";
 	public static final String NEW = "new";
 	public static final String EXTENDS = "extends";
-
-
+	public static final String LB = "lb";
 
 }

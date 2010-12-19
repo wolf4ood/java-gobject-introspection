@@ -1,4 +1,3 @@
-
 /* 
  * Copyright (c) 2008 Colin Walters <walters@verbum.org>
  * 
@@ -23,7 +22,10 @@
 
 package org.gnome.gir.repository;
 
-public class FunctionInfo extends CallableInfo implements FunctionInfoFlags{
+import org.gnome.gir.compiler.GConstants;
+import org.gnome.gir.compiler.helper.Resolver;
+
+public class FunctionInfo extends CallableInfo implements FunctionInfoFlags {
 	protected FunctionInfo(Initializer init) {
 		super(init);
 	}
@@ -31,17 +33,39 @@ public class FunctionInfo extends CallableInfo implements FunctionInfoFlags{
 	public String getSymbol() {
 		return Repository.getNativeLibrary().g_function_info_get_symbol(this);
 	}
-	
+
 	public int getFlags() {
 		return Repository.getNativeLibrary().g_function_info_get_flags(this);
 	}
-	
+
 	@Override
 	public String getIdentifier() {
 		return getSymbol();
 	}
-	
-	public boolean isThrowError(){
-		return (THROWS | IS_METHOD) ==getFlags();
+
+	@Override
+	public String getNativeToString() {
+		String signature = new String();
+		String retType = isContructor() ? GConstants.POINTER : Resolver
+				.resolveToNative(getReturnType());
+		signature += retType + GConstants.SPACE + getIdentifier()
+				+ GConstants.ROUND_BRACKET_OPEN;
+		String callArgs = new String();
+		for (ArgInfo a : getArgs()) {
+			callArgs += a.getNativeToString() + GConstants.COMMA;
+		}
+		String error = isThrowError() ? GConstants.POINTERBR + GConstants.SPACE
+				+ GConstants.ERROR + GConstants.COMMA : GConstants.EMPTY;
+		callArgs += error;
+		int last = callArgs.length() != 0 ? callArgs.length() - 1 : callArgs
+				.length();
+		callArgs = callArgs.substring(0, last);
+		signature += callArgs + GConstants.ROUND_BRACKET_CLOSED
+				+ GConstants.DOUBLEDOT;
+		return signature;
+	}
+
+	public boolean isThrowError() {
+		return (THROWS | IS_METHOD) == getFlags();
 	}
 }

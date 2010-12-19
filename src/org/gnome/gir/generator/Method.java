@@ -32,8 +32,8 @@ public class Method {
 				+ signatureToJava() + GConstants.BRACE_OPEN
 				+ GConstants.NEWLINE;
 		declaration += GConstants.TAB + ret + GConstants.SPACE
-				+ functionInfo.getNamespace() + GConstants.DOT
-				+ callMethodNative() + GConstants.DOUBLEDOT
+				+ functionInfo.getNamespace() + GConstants.DOT + GConstants.LB
+				+ GConstants.DOT + callMethodNative() + GConstants.DOUBLEDOT
 				+ GConstants.NEWLINE;
 		declaration += GConstants.BRACE_CLOSED + GConstants.NEWLINE;
 		return declaration;
@@ -69,7 +69,8 @@ public class Method {
 				+ GConstants.NEWLINE;
 		conString += GConstants.TAB + GConstants.POINTER.toLowerCase()
 				+ GConstants.EQUALS + functionInfo.getNamespace()
-				+ GConstants.DOT + callMethodNative() + GConstants.DOUBLEDOT
+				+ GConstants.DOT + GConstants.LB + GConstants.DOT
+				+ callMethodNative() + GConstants.DOUBLEDOT
 				+ GConstants.NEWLINE + GConstants.BRACE_CLOSED
 				+ GConstants.NEWLINE;
 		return conString;

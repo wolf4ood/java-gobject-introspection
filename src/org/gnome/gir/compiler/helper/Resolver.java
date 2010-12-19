@@ -57,6 +57,7 @@ public class Resolver {
 			f.createNewFile();
 			FileWriter writer = new FileWriter(f);
 			writer.write(content);
+			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

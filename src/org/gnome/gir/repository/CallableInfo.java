@@ -22,6 +22,7 @@
  */
 
 package org.gnome.gir.repository;
+import org.gnome.gir.compiler.GConstants;
 import org.gnome.gir.compiler.helper.Resolver;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
@@ -67,7 +68,7 @@ public class CallableInfo extends BaseInfo {
 	@Override
 	public String getNativeToString() {
 		String signature = new String() ;
-		String  retType = getName().equals("new") ? "Pointer" : Resolver.resolveToNative(getReturnType())  ;
+		String  retType = getName().equals("new") ? GConstants.POINTER : Resolver.resolveToNative(getReturnType())  ;
 		signature += retType  + " " + getIdentifier() + "(";
 		String args = new String();
 		int i=1;

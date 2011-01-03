@@ -50,7 +50,12 @@ public class FunctionInfo extends CallableInfo implements FunctionInfoFlags {
 				.resolveToNative(getReturnType());
 		signature += retType + GConstants.SPACE + getIdentifier()
 				+ GConstants.ROUND_BRACKET_OPEN;
+		if (!isContructor())
+			signature += GConstants.POINTER + GConstants.SPACE
+					+ GConstants.POINTER.toLowerCase();
 		String callArgs = new String();
+		if (getArgs().length != 0 && !isContructor())
+			signature += GConstants.COMMA;
 		for (ArgInfo a : getArgs()) {
 			callArgs += a.getNativeToString() + GConstants.COMMA;
 		}

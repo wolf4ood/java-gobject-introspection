@@ -69,15 +69,16 @@ public class CallableInfo extends BaseInfo {
 	public String getNativeToString() {
 		String signature = new String() ;
 		String  retType = getName().equals("new") ? GConstants.POINTER : Resolver.resolveToNative(getReturnType())  ;
-		signature += retType  + " " + getIdentifier() + "(";
+		signature += retType  + GConstants.SPACE + getIdentifier() + GConstants.ROUND_BRACKET_OPEN + GConstants.POINTER.toLowerCase();
 		String args = new String();
 		int i=1;
+		if(!args.isEmpty()) signature += GConstants.COMMA;
 		for(ArgInfo a : getArgs()){
-			String sep = getArgs().length != i ? "," : "";
+			String sep = getArgs().length != i ? GConstants.COMMA : GConstants.EMPTY;
 			args += a.getNativeToString() + sep;
 			i++;
 		}
-		signature += args + ");";
+		signature += args + GConstants.ROUND_BRACKET_CLOSED + GConstants.DOUBLEDOT;
 		return signature;
 	}
 }

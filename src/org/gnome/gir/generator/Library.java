@@ -1,5 +1,6 @@
 package org.gnome.gir.generator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.gnome.gir.compiler.GConstants;
@@ -9,11 +10,21 @@ public class Library {
 	protected String namespace;
 	protected String library;
 	protected String mapper;
+	protected List<Package> packages = new ArrayList<Package>();
 
 	public Library(String namespace, String library, String mapper) {
 		this.namespace = namespace;
 		this.library = library;
 		this.mapper = mapper;
+		initLibrary();
+	}
+
+	protected void initLibrary() {
+		packages.add(new Package(GConstants.PACKAGE_PREFIX + GConstants.DOT + namespace.toLowerCase()));
+		packages.add(new Package("com.sun.jna.Library"));
+		packages.add(new Package("com.sun.jna.Native"));
+		packages.add(new Package("com.sun.jna.Pointer"));
+		packages.add(new Package("com.sun.jna.ptr.PointerByReference"));
 	}
 
 	public String writeLibrary(List<String> methods) {
@@ -27,12 +38,15 @@ public class Library {
 		builder.append(GConstants.BRACE_CLOSED);
 		return builder.toString();
 	}
+
 	private String writePackages() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(GConstants.PACKAGE + GConstants.SPACE
-				+ GConstants.PACKAGE_PREFIX + GConstants.DOT
-				+ namespace.toLowerCase() + GConstants.NEWLINE);
-
+		for (Package p : packages) {
+			if(packages.indexOf(p)==0)
+				builder.append(p.packageToJava());
+			else
+				builder.append(p.importToJava());
+		}
 		return builder.toString();
 	}
 
@@ -55,5 +69,13 @@ public class Library {
 				+ GConstants.LIBRARY + GConstants.BRACE_OPEN
 				+ GConstants.NEWLINE);
 		return builder.toString();
+	}
+
+	public List<Package> getPackages() {
+		return packages;
+	}
+
+	public void setPackages(List<Package> packages) {
+		this.packages = packages;
 	}
 }

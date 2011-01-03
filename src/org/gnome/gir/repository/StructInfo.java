@@ -1,7 +1,7 @@
 package org.gnome.gir.repository;
 
 
-public class StructInfo extends RegisteredTypeInfo {
+public class StructInfo extends RegisteredTypeInfo implements MethodInterface {
 	protected StructInfo(Initializer init) {
 		super(init);
 	}		
@@ -24,4 +24,5 @@ public class StructInfo extends RegisteredTypeInfo {
 	public boolean isGTypeStruct() {
 		return GIntrospectionAPI.gi.g_struct_info_is_gtype_struct(this);
 	}
+	
 }

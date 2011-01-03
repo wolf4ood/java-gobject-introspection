@@ -27,7 +27,7 @@ package org.gnome.gir.repository;
 public enum TypeTag {
 
 	VOID("void"), BOOLEAN("Boolean"), INT8("Byte"), UINT8("Character"), INT16("Short"), UINT16(
-			"Short"), INT32("Integer"), UINT32("Integer"), INT64("Integer"), UINT64("Integer"), SHORT("Short"), USHORT("Short"), INT("Integer"), UINT("Long"), LONG("Long"), ULONG(
+			"Short"), INT32("Integer"), UINT32("Integer"), INT64("Integer"), UINT64("Integer"), SHORT("Short"), USHORT("Short"), INT("Integer"), UINT("String"), LONG("Long"), ULONG(
 			"Long"), SSIZE(""), SIZE(""), FLOAT("Float"), DOUBLE("Double"), TIMET(
 			""), GTYPE("GType"), UTF8("String"), FILENAME("String"), ARRAY(""), INTERFACE(
 			"Iface"), GLIST(""), GSLIST(""), GHASH(""), ERROR("GErrorStruct");

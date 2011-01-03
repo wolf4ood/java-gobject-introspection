@@ -25,10 +25,15 @@ public class Method {
 
 	}
 
+	public Boolean isConstructor() {
+		return functionInfo.isContructor();
+	}
+
 	private String writeMethod() {
 		String ret = GConstants.VOID.equals(functionInfo.getReturn()) ? GConstants.EMPTY
 				: GConstants.RETURN;
-		String declaration = functionInfo.getReturn() + GConstants.SPACE
+		String declaration = GConstants.PUBLIC + GConstants.SPACE
+				+ functionInfo.getReturn() + GConstants.SPACE
 				+ signatureToJava() + GConstants.BRACE_OPEN
 				+ GConstants.NEWLINE;
 		declaration += GConstants.TAB + ret + GConstants.SPACE
@@ -41,6 +46,8 @@ public class Method {
 
 	private String callArgs() {
 		String callArgs = new String();
+		if (!functionInfo.isContructor())
+			callArgs += GConstants.POINTER.toLowerCase() + GConstants.COMMA;
 		for (ArgInfo a : functionInfo.getArgs()) {
 			callArgs += a.getName() + GConstants.COMMA;
 		}
@@ -62,17 +69,33 @@ public class Method {
 		return callArgs.substring(0, last);
 	}
 
+	public String defaultConstructorToJava() {
+		String conString = GConstants.PUBLIC + GConstants.SPACE
+				+ functionInfo.getReturn() + GConstants.ROUND_BRACKET_OPEN
+				+ GConstants.POINTER + GConstants.SPACE
+				+ GConstants.POINTER.toLowerCase()
+				+ GConstants.ROUND_BRACKET_CLOSED + GConstants.BRACE_OPEN
+				+ GConstants.NEWLINE;
+		conString += GConstants.TAB + GConstants.SUPER
+				+ GConstants.ROUND_BRACKET_OPEN
+				+ GConstants.POINTER.toLowerCase()
+				+ GConstants.ROUND_BRACKET_CLOSED + GConstants.DOUBLEDOT
+				+ GConstants.NEWLINE + GConstants.BRACE_CLOSED
+				+ GConstants.NEWLINE;
+		return conString;
+	}
+
 	private String constructorToJava() {
 		String conString = GConstants.PUBLIC + GConstants.SPACE
 				+ functionInfo.getReturn() + GConstants.ROUND_BRACKET_OPEN
-				+ GConstants.ROUND_BRACKET_CLOSED + GConstants.BRACE_OPEN
-				+ GConstants.NEWLINE;
-		conString += GConstants.TAB + GConstants.POINTER.toLowerCase()
-				+ GConstants.EQUALS + functionInfo.getNamespace()
+				+ declareArgs() + GConstants.ROUND_BRACKET_CLOSED
+				+ GConstants.BRACE_OPEN + GConstants.NEWLINE;
+		conString += GConstants.TAB + GConstants.SUPER
+				+ GConstants.ROUND_BRACKET_OPEN + functionInfo.getNamespace()
 				+ GConstants.DOT + GConstants.LB + GConstants.DOT
-				+ callMethodNative() + GConstants.DOUBLEDOT
-				+ GConstants.NEWLINE + GConstants.BRACE_CLOSED
-				+ GConstants.NEWLINE;
+				+ callMethodNative() + GConstants.ROUND_BRACKET_CLOSED
+				+ GConstants.DOUBLEDOT + GConstants.NEWLINE
+				+ GConstants.BRACE_CLOSED + GConstants.NEWLINE;
 		return conString;
 	}
 

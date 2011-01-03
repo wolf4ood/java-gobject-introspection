@@ -90,37 +90,37 @@ public class GTypeMapper extends com.sun.jna.DefaultTypeMapper {
         }        
     };    
  
-    private static TypeConverter nativeObjectConverter = new TypeConverter() {
-        public Object toNative(Object arg, ToNativeContext context) {
-            if (arg == null) {
-                return null;
-            }
-            Pointer ptr = ((NativeObject) arg).getNativeAddress();
-            return ptr;
-        }
- 
-        @SuppressWarnings(value = "unchecked")
-        public Object fromNative(Object result, FromNativeContext context) {
-            if (result == null) {
-                return null;
-            }
-            if (context instanceof FunctionResultContext) {
-            	return NativeObject.Internals.objectFor((Pointer) result, context.getTargetType(), true);
-            }            
-            if (context instanceof CallbackParameterContext || context instanceof StructureReadContext) {
-                return NativeObject.Internals.objectFor((Pointer) result, context.getTargetType(), false);
-            }
-            if (context instanceof MethodResultContext) {
-            	throw new RuntimeException("Got illegal MethodResultContext in GTypeMapper");
-            }            
-            throw new IllegalStateException("Cannot convert to NativeObject from " + context);
-        }
-        
-        public Class<?> nativeType() {
-            return Pointer.class;
-        }
-    };
     
+    private static TypeConverter nativeObjectConverter = new TypeConverter() {
+    	public Object toNative(Object arg, ToNativeContext context) {
+    		if (arg == null) {
+    			return null;
+    		}
+    		Pointer ptr = ((NativeObject) arg).getNativeAddress();
+    		return ptr;
+    	}
+    	
+    	@SuppressWarnings(value = "unchecked")
+    	public Object fromNative(Object result, FromNativeContext context) {
+    		if (result == null) {
+    			return null;
+    		}
+    		if (context instanceof FunctionResultContext) {
+    			return NativeObject.Internals.objectFor((Pointer) result, context.getTargetType(), true);
+    		}            
+    		if (context instanceof CallbackParameterContext || context instanceof StructureReadContext) {
+    			return NativeObject.Internals.objectFor((Pointer) result, context.getTargetType(), false);
+    		}
+    		if (context instanceof MethodResultContext) {
+    			throw new RuntimeException("Got illegal MethodResultContext in GTypeMapper");
+    		}            
+    		throw new IllegalStateException("Cannot convert to NativeObject from " + context);
+    	}
+    	
+    	public Class<?> nativeType() {
+    		return Pointer.class;
+    	}
+    };
     private static TypeConverter enumConverter = new TypeConverter() {
 
         @SuppressWarnings(value = "unchecked")

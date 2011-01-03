@@ -41,6 +41,12 @@ public class GConstants {
 	public static final String PACKAGE = "package";
 	public static final String NEW = "new";
 	public static final String EXTENDS = "extends";
+	public static final String GOBJECT = "GObject";
 	public static final String LB = "lb";
+	public static final String ENUM = "enum";
+	public static final String THIS = "this";
+	public static final String SUPER = "super";
+	public static final String PRIVATE = "private";
+	public static final String OBJECT = "Object";
 
 }

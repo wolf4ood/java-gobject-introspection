@@ -24,6 +24,12 @@ public class Resolver {
 			ret = info.getInterface().getName();
 			break;
 
+		case VOID:
+			if(info.isPointer()){
+				ret = GConstants.OBJECT;
+			}else
+				ret = tag.toString();
+			break;
 		default:
 			ret = tag.toString();
 			break;

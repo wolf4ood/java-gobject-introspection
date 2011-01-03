@@ -16,7 +16,8 @@ public class BaseInfo extends RefCountedObject {
 		if (itype == InfoType.UNRESOLVED.ordinal()) {
 			String namespace = GIntrospectionAPI.gi.g_base_info_get_namespace(ptr);
 			String name = GIntrospectionAPI.gi.g_base_info_get_name(ptr);
-			throw new UnresolvedException(namespace, name);
+			Initializer init = new Initializer(ptr, true);		
+			//throw new UnresolvedException(namespace, name);
 		}
 		Initializer init = new Initializer(ptr, true);		
 		if (itype == InfoType.ENUM.ordinal())
